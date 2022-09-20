@@ -1,0 +1,67 @@
+---
+title: "Data Import"
+author: "Meng Fang"
+date: '2022-09-20'
+output:
+  github_document: default
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+
+# Data Import CSVs
+
+Import Data using `readr package``
+
+```{r}
+litter_df <- read_csv("./FAS_litters.csv")
+litter_df
+```
+```{r}
+head(litter_df)
+tail(litter_df)
+```
+
+
+```{r}
+skimr::skim(litter_df)
+```
+
+readcsv options
+
+```{r}
+litters_data = read_csv(file = "./FAS_litters.csv", na = c("","NA",999,88), skip = 2)
+litters_data
+```
+
+## Read excel spreadsheet
+
+```{r}
+mlb_df <- read_excel("./mlb11.xlsx")
+```
+
+```{r}
+view(mlb_df)
+```
+
+- Read wired data
+
+```{r}
+lotr_words <- read_excel("./LotR_Words.xlsx", range = "B3:D6")
+```
+
+## Read in a SAS dataset
+
+```{r}
+pulse_df <- read_sas("./public_pulse_data.sas7bdat")
+```
+
+## Data Export
+
+```{r}
+write_csv(lotr_words, file = "./lotr_words.csv")
+```
+
