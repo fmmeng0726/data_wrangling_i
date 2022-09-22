@@ -1,0 +1,62 @@
+---
+title: "Data Import"
+author: "Meng Fang"
+date: '2022-09-20'
+output:
+  github_document: default
+---
+
+## Load Package
+
+```{r}
+library(dplyr)
+```
+
+## Load Data
+
+```{r}
+litters_data <- read.csv("./FAS_litters.csv")
+
+#initially clean up the variable names
+
+litters_data <- janitor::clean_names(litters_data)
+
+```
+
+## `select`
+
+`select()` chooses the variable that you want
+
+```{r}
+litters_data %>%
+  select(group, litter_number, gd0_weight, pups_born_alive)
+```
+
+or, use : to select consecutive variables from the list
+
+```{r}
+litters_data %>%
+  select(group:gd_of_birth)
+```
+
+exclude particular variable using `-`
+
+```{r}
+litters_data %>%
+  select(-group, -pups_born_alive)
+```
+
+change variable names
+
+```{r}
+litters_data %>%
+  select(GRUOP = group, Litter_NAME =  litter_number)
+```
+
+keep all of the columns and change particular variable name
+
+```{r}
+litters_data %>%
+  rename(GRUOP = group, Litter_NAME =  litter_number)
+```
+
